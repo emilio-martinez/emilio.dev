@@ -2,5 +2,4 @@
 layout: layouts/base
 pageTitle: Emilio Martinez
 ---
-
-<h1>Emilio Martinez</h1>
+# 👋 Hi there. I'm Emilio Martinez.
