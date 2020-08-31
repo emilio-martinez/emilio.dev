@@ -1,8 +1,9 @@
 import { resolve } from 'path';
+import builtins from '@erquhart/rollup-plugin-node-builtins';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import json from '@rollup/plugin-json';
-import alias from '@rollup/plugin-alias';
+import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 
 export default () => {
@@ -17,11 +18,9 @@ export default () => {
         format: 'iife',
       },
       plugins: [
-        alias({
-          entries: [
-            { find: 'react', replacement: 'preact/compat' },
-            { find: 'react-dom', replacement: 'preact/compat' },
-          ],
+        builtins(),
+        replace({
+          'process.env.NODE_ENV': JSON.stringify('production'),
         }),
         nodeResolve(),
         commonjs(),
