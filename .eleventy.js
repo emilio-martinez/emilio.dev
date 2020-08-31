@@ -1,11 +1,10 @@
 module.exports = function (config) {
-  config.addPassthroughCopy('src/media');
-  config.addPassthroughCopy('src/admin');
-  config.addPassthroughCopy('src/robots.txt');
+  config.addPassthroughCopy(`src/site/media`);
+  config.addPassthroughCopy(`src/site/robots.txt`);
 
   return {
     dir: {
-      input: 'src',
+      input: 'src/site',
       output: 'dist',
     },
     passthroughFileCopy: true,
