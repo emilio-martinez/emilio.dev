@@ -11,10 +11,10 @@ export default () => {
       input: resolve(__dirname, './src/admin.js'),
       output: {
         dir: resolve(__dirname, './dist/admin/'),
-        entryFileNames: '[name].[hash].js',
-        chunkFileNames: '[name].[hash].js',
+        // TODO: Add [hash]
+        entryFileNames: '[name].js',
+        chunkFileNames: '[name].js',
         format: 'iife',
-        compact: true,
       },
       plugins: [
         alias({

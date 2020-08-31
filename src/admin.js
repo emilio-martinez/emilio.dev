@@ -12,7 +12,7 @@ CMS.init({
       allowed_hosts: [],
     },
     publish_mode: 'editorial_workflow',
-    media_folder: 'src/media',
+    media_folder: 'src/site/media',
     public_folder: '/media',
     collections: [
       {
@@ -23,7 +23,7 @@ CMS.init({
             name: 'site_data',
             label: 'Site Data',
             delete: false,
-            file: 'src/_data/site.json',
+            file: 'src/site/_data/site.json',
             fields: [
               { label: 'Site Name', name: 'name', widget: 'string' },
               { label: 'Site Url', name: 'url', widget: 'string' },
@@ -39,7 +39,7 @@ CMS.init({
             name: 'home',
             label: 'Home',
             delete: false,
-            file: 'src/index.md',
+            file: 'src/site/index.md',
             slug: '{{slug}}',
             fields: [
               { label: 'Layout', name: 'layout', widget: 'hidden', default: 'layouts/base' },
