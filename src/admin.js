@@ -42,7 +42,6 @@ CMS.init({
             file: 'src/site/index.md',
             slug: '{{slug}}',
             fields: [
-              { label: 'Layout', name: 'layout', widget: 'hidden', default: 'layouts/base' },
               { label: 'Title', name: 'pageTitle', widget: 'string' },
               { label: 'Body', name: 'body', widget: 'markdown' },
             ],

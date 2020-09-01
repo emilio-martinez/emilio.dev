@@ -1,6 +1,5 @@
 ---
-layout: layouts/base
-pageTitle: Emilio Martinez
+pageTitle: 👋 Hi there
 ---
 
 # Emilio Martinez

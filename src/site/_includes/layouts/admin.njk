@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  {%- if pageTitle %}
+  <title>{{ pageTitle }} | {{ site.name }}</title>
+  {%- else %}
+  <title>{{ site.name }}</title>
+  {%- endif %}
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  {%- block inside_head %} {%- endblock %}
+</head>
+<body>
+  {{ content | safe | trim }}
+</body>
+</html>
