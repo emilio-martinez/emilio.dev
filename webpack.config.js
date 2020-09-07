@@ -3,6 +3,7 @@
 
 const { resolve } = require('path');
 const { DefinePlugin } = require('webpack');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 
 /**
@@ -17,18 +18,17 @@ module.exports = () => {
         admin: resolve(__dirname, './src/admin.js'),
       },
       output: {
-        path: resolve(__dirname, './dist/admin/'),
-        publicPath: '/admin/',
+        path: resolve(__dirname, './src/site/assets/build/admin/'),
+        publicPath: '/assets/build/admin/',
         filename: '[name].[hash:20].js',
         chunkFilename: '[name].[chunkhash:20].js',
       },
       plugins: [
+        new CleanWebpackPlugin(),
         new DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify('production'),
         }),
-        new ManifestPlugin({
-          fileName: resolve(__dirname, './src/site/_data/assetManifestAdmin.json'),
-        }),
+        new ManifestPlugin(),
       ],
       optimization: {
         runtimeChunk: true,
