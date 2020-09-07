@@ -1,1 +1,4 @@
 package-lock.json
+
+# Bundler built assets
+src/site/assets/build/
