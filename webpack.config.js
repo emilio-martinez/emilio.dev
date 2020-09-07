@@ -1,6 +1,5 @@
 // @ts-check
-/* eslint-env node */
-/* eslint-env es2015 */
+/* eslint-disable @typescript-eslint/no-var-requires */
 
 const { resolve } = require('path');
 const { DefinePlugin } = require('webpack');
