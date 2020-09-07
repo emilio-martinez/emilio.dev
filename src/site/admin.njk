@@ -4,4 +4,8 @@ permalink: '/admin/index.html'
 pageTitle: Content Manager
 ---
 
-<script src="/admin/admin.js" defer></script>
+{%- if assetManifestAdmin %}
+<script defer src="{{ assetManifestAdmin['runtime~admin.js'] }}"></script>
+<script defer src="{{ assetManifestAdmin['vendors~admin.js'] }}"></script>
+<script defer src="{{ assetManifestAdmin['admin.js'] }}"></script>
+{%- endif %}
