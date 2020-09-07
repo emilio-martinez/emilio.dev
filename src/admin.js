@@ -12,8 +12,8 @@ CMS.init({
       allowed_hosts: [],
     },
     publish_mode: 'editorial_workflow',
-    media_folder: 'src/site/media',
-    public_folder: '/media',
+    media_folder: 'src/site/assets/uploads',
+    public_folder: '/assets/uploads',
     collections: [
       {
         name: 'globals',

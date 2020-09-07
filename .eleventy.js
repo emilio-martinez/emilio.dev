@@ -1,5 +1,5 @@
 module.exports = function (config) {
-  config.addPassthroughCopy(`src/site/media`);
+  config.addPassthroughCopy(`src/site/assets`);
   config.addPassthroughCopy(`src/site/robots.txt`);
 
   return {
