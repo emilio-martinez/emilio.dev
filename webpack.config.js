@@ -5,6 +5,7 @@ const { resolve } = require('path');
 const { DefinePlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 /**
  * @type {import('webpack').MultiConfigurationFactory}
@@ -77,6 +78,37 @@ module.exports = () => {
             defaultVendors: false,
           },
         },
+        minimizer: [
+          new TerserPlugin({
+            extractComments: false,
+            parallel: true,
+            terserOptions: {
+              safari10: true,
+              parse: {
+                ecma: 2017,
+              },
+              compress: {
+                ecma: 5,
+                warnings: false,
+                pure_getters: true,
+                // PURE comments work best with 3 passes.
+                // See https://github.com/webpack/webpack/issues/2899#issuecomment-317425926.
+                passes: 3,
+                // The following two options are known to break valid JavaScript code
+                comparisons: false,
+                inline: 2,
+              },
+              mangle: { safari10: true },
+              output: {
+                ecma: 5,
+                safari10: true,
+                comments: false,
+                // Fixes usage of Emoji and certain Regex
+                ascii_only: true,
+              },
+            },
+          }),
+        ],
       },
       resolve: {
         extensions: ['.ts', '.tsx', '.mjs', '.js', '.jsx'],
