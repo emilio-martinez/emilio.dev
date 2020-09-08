@@ -16,7 +16,7 @@ module.exports = () => {
       mode: 'production',
       performance: {
         // For now, netlify-cms is a fairly large monolith, so temporarily disable size warnings
-        assetFilter: (assetFilename) => !assetFilename.includes(`vendors`),
+        assetFilter: (assetFilename) => !assetFilename.includes(`vendors-netlify`),
       },
       entry: {
         admin: resolve(__dirname, './src/admin.js'),
@@ -72,6 +72,9 @@ module.exports = () => {
               // Prevent chunk from being eliminated and/or incorporated into commons chunk
               enforce: true,
             },
+            // Disable default vendor chunks
+            vendors: false,
+            defaultVendors: false,
           },
         },
       },
