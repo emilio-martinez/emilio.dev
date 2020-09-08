@@ -31,8 +31,8 @@ module.exports = () => {
         rules: [
           {
             test: /\.(ts|tsx|js|jsx|mjs)$/,
-            // TODO: review not excluding some packages via /node_modules\/(?:(?!package-name).+)\//
-            exclude: /node_modules/,
+            // TODO: review not excluding some packages via /[\\/]node_modules[\\/](?:(?!package-name).+)[\\/]/
+            exclude: /[\\/]node_modules[\\/]/,
             use: {
               loader: 'babel-loader',
               options: {
@@ -57,6 +57,22 @@ module.exports = () => {
         runtimeChunk: true,
         splitChunks: {
           chunks: 'all',
+          cacheGroups: {
+            'vendors-react': {
+              chunks: 'all',
+              test: /(?<!node_modules.*)[\\/]node_modules[\\/](preact|preact-render-to-string|preact-context-provider|react|react-dom|scheduler|prop-types|use-subscription)[\\/]/,
+              priority: 40,
+              // Prevent chunk from being eliminated and/or incorporated into commons chunk
+              enforce: true,
+            },
+            'vendors-netlify': {
+              chunks: 'all',
+              test: /(?<!node_modules.*)[\\/]node_modules[\\/](netlify-.+)[\\/]/,
+              priority: 40,
+              // Prevent chunk from being eliminated and/or incorporated into commons chunk
+              enforce: true,
+            },
+          },
         },
       },
       resolve: {

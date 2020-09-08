@@ -5,7 +5,21 @@ pageTitle: Content Manager
 ---
 
 {%- if bundlerAssets.admin %}
+
+{%- if bundlerAssets.admin['runtime~admin.js'] %}
 <script defer src="{{ bundlerAssets.admin['runtime~admin.js'] }}"></script>
+{%- endif %}
+{%- if bundlerAssets.admin['vendors-react~admin.js'] %}
+<script defer src="{{ bundlerAssets.admin['vendors-react~admin.js'] }}"></script>
+{%- endif %}
+{%- if bundlerAssets.admin['vendors-netlify~admin.js'] %}
+<script defer src="{{ bundlerAssets.admin['vendors-netlify~admin.js'] }}"></script>
+{%- endif %}
+{%- if bundlerAssets.admin['vendors~admin.js'] %}
 <script defer src="{{ bundlerAssets.admin['vendors~admin.js'] }}"></script>
+{%- endif %}
+{%- if bundlerAssets.admin['admin.js'] %}
 <script defer src="{{ bundlerAssets.admin['admin.js'] }}"></script>
+{%- endif %}
+
 {%- endif %}
