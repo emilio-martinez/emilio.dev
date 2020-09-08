@@ -14,6 +14,10 @@ module.exports = () => {
     {
       name: 'admin',
       mode: 'production',
+      performance: {
+        // For now, netlify-cms is a fairly large monolith, so temporarily disable size warnings
+        assetFilter: (assetFilename) => !assetFilename.includes(`vendors`),
+      },
       entry: {
         admin: resolve(__dirname, './src/admin.js'),
       },
@@ -22,6 +26,25 @@ module.exports = () => {
         publicPath: '/assets/build/admin/',
         filename: '[name].[hash:20].js',
         chunkFilename: '[name].[chunkhash:20].js',
+      },
+      module: {
+        rules: [
+          {
+            test: /\.(ts|tsx|js|jsx|mjs)$/,
+            // TODO: review not excluding some packages via /node_modules\/(?:(?!package-name).+)\//
+            exclude: /node_modules/,
+            use: {
+              loader: 'babel-loader',
+              options: {
+                rootMode: 'upward',
+                babelrc: true,
+                cacheDirectory: true,
+                cacheCompression: false,
+                envName: 'modern',
+              },
+            },
+          },
+        ],
       },
       plugins: [
         new CleanWebpackPlugin(),
