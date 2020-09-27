@@ -5,6 +5,9 @@ CMS.init({
     backend: {
       name: 'git-gateway',
       branch: '_content',
+      // Note: `squash_merges` is an experimental/beta feature
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-expect-error
       squash_merges: true,
     },
     local_backend: {
@@ -22,6 +25,9 @@ CMS.init({
           {
             name: 'site_data',
             label: 'Site Data',
+            // Note: `delete` feature is an optional feature that's not typed yet
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             delete: false,
             file: 'src/site/_data/site.json',
             fields: [
@@ -38,6 +44,9 @@ CMS.init({
           {
             name: 'home',
             label: 'Home',
+            // Note: `delete` feature is an optional feature that's not typed yet
+            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+            // @ts-expect-error
             delete: false,
             file: 'src/site/index.md',
             slug: '{{slug}}',
