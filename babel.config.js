@@ -23,7 +23,14 @@ module.exports = (api) => {
           targets,
         },
       ],
+      ['@babel/preset-typescript', { allowDeclareFields: true }],
     ],
-    plugins: ['@babel/plugin-transform-runtime'],
+    plugins: [
+      ['babel-plugin-const-enum', { transform: 'removeConst' }],
+      ['@babel/plugin-transform-typescript', { allowDeclareFields: true }],
+      ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }],
+      ['@babel/plugin-proposal-class-properties'],
+      ['@babel/plugin-transform-runtime'],
+    ],
   };
 };

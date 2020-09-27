@@ -19,7 +19,17 @@
   </main>
   {%- block after_main %} {%- endblock %}
 
-  {%- block body_scripts %} {%- endblock %}
-  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js" defer></script>
+  {%- block before_scripts %} {%- endblock %}
+  {%- if bundlerAssets.main %}
+  {%- if bundlerAssets.main['runtime~main.js'] %}
+  <script defer src="{{ bundlerAssets.main['runtime~main.js'] }}"></script>
+  {%- endif %}
+  {%- if bundlerAssets.main['main.js'] %}
+  <script defer src="{{ bundlerAssets.main['main.js'] }}"></script>
+  {%- endif %}
+  {%- endif %}
+  {%- block after_scripts %} {%- endblock %}
+
+  <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </body>
 </html>
