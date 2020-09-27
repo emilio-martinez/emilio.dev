@@ -1,4 +1,0 @@
-enum Bla {
-  ONE,
-  TWO,
-}
