@@ -1,0 +1,9 @@
+@use './tokens';
+
+// Color Scheme - Light
+$light-txt-color: tokens.$color-blue-80;
+$light-bkg-color: tokens.$color-blue-10;
+
+// Color Scheme - Dark
+$dark-txt-color: tokens.$color-blue-10;
+$dark-bkg-color: tokens.$color-blue-100;

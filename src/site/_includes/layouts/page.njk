@@ -8,7 +8,21 @@
   {%- else %}
   <title>{{ site.name }}</title>
   {%- endif %}
-  {%- block inside_head %} {%- endblock %}
+
+  {% if site.googleFontsHref -%}
+  <!-- Google Fonts Async Snippet -->
+  <!-- See https://csswizardry.com/2020/05/the-fastest-google-fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="{{ site.googleFontsHref }}" />
+  <link rel="stylesheet" href="{{ site.googleFontsHref }}" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="{{ site.googleFontsHref }}" /></noscript>
+  {%- endif %}
+
+  {% block before_bundler_styles -%} {%- endblock -%}
+  {%- if bundlerAssets.main and bundlerAssets.main['main.css'] -%}
+  <link rel="stylesheet" href="{{ bundlerAssets.main['main.css'] }}">
+  {%- endif -%}
+  {%- block after_bundler_styles -%} {%- endblock %}
 </head>
 <body>
   {%- block before_main %} {%- endblock %}
@@ -19,16 +33,14 @@
   </main>
   {%- block after_main %} {%- endblock %}
 
-  {%- block before_scripts %} {%- endblock %}
-  {%- if bundlerAssets.main %}
-  {%- if bundlerAssets.main['runtime~main.js'] %}
+  {% block before_bundler_scripts -%} {%- endblock -%}
+  {%- if bundlerAssets.main and bundlerAssets.main['runtime~main.js'] -%}
   <script defer src="{{ bundlerAssets.main['runtime~main.js'] }}"></script>
   {%- endif %}
-  {%- if bundlerAssets.main['main.js'] %}
+  {% if bundlerAssets.main and bundlerAssets.main['main.js'] -%}
   <script defer src="{{ bundlerAssets.main['main.js'] }}"></script>
   {%- endif %}
-  {%- endif %}
-  {%- block after_scripts %} {%- endblock %}
+  {%- block after_bundler_scripts -%} {%- endblock %}
 
   <script defer src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 </body>

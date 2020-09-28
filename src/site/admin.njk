@@ -4,19 +4,15 @@ permalink: '/admin/index.html'
 pageTitle: Content Manager
 ---
 
-{%- if bundlerAssets.admin %}
-
-{%- if bundlerAssets.admin['runtime~admin.js'] %}
+{%- if bundlerAssets.admin and bundlerAssets.admin['runtime~admin.js'] %}
 <script defer src="{{ bundlerAssets.admin['runtime~admin.js'] }}"></script>
 {%- endif %}
-{%- if bundlerAssets.admin['vendors-react~admin.js'] %}
+{%- if bundlerAssets.admin and bundlerAssets.admin['vendors-react~admin.js'] %}
 <script defer src="{{ bundlerAssets.admin['vendors-react~admin.js'] }}"></script>
 {%- endif %}
-{%- if bundlerAssets.admin['vendors-netlify~admin.js'] %}
+{%- if bundlerAssets.admin and bundlerAssets.admin['vendors-netlify~admin.js'] %}
 <script defer src="{{ bundlerAssets.admin['vendors-netlify~admin.js'] }}"></script>
 {%- endif %}
-{%- if bundlerAssets.admin['admin.js'] %}
+{%- if bundlerAssets.admin and bundlerAssets.admin['admin.js'] %}
 <script defer src="{{ bundlerAssets.admin['admin.js'] }}"></script>
-{%- endif %}
-
 {%- endif %}
