@@ -3,10 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  {%- if pageTitle %}
-  <title>{{ pageTitle }} | {{ site.name }}</title>
-  {%- else %}
+
+  {% if pageTitle -%}
+  <title>{{ pageTitle }} // {{ site.name }}</title>
+  {%- else -%}
   <title>{{ site.name }}</title>
+  {%- endif %}
+
+  {% if metaDescription -%}
+  <meta name="description" content="{{ metaDescription }}" />
   {%- endif %}
 
   {% if site.googleFontsHref -%}
