@@ -1,0 +1,140 @@
+@use './styles/variables/tokens';
+@use './styles/variables/color-scheme';
+
+@forward './styles/globals/normalize';
+@forward './styles/globals/font-scale';
+
+:root {
+  --txt-color: #{color-scheme.$light-txt-color};
+  --bkg-color: #{color-scheme.$light-bkg-color};
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --txt-color: #{color-scheme.$dark-txt-color};
+    --bkg-color: #{color-scheme.$dark-bkg-color};
+  }
+}
+
+body {
+  font-family: tokens.$font-family-body;
+  line-height: tokens.$leading-wide;
+  color: var(--txt-color, #{color-scheme.$light-txt-color});
+  background-color: var(--bkg-color, #{color-scheme.$light-bkg-color});
+}
+
+main {
+  font-size: var(--font-scale-200);
+  margin: 0 auto;
+  width: calc(100vw - 4rem);
+  max-width: 1140px;
+  margin-top: 64px;
+  margin-bottom: 64px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: tokens.$font-family-heading;
+  font-family: tokens.$leading-normal;
+  font-weight: 700;
+  font-style: italic;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
+}
+
+a {
+  color: inherit;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+h1 {
+  font-size: var(--font-scale-800);
+  line-height: 1.1;
+}
+
+/**
+ * Composition
+ */
+
+.flow\:xs > * + * {
+  margin-top: 1rem;
+}
+.flow\:sm > * + * {
+  margin-top: 2rem;
+}
+.flow\:md > * + * {
+  margin-top: 3rem;
+}
+.flow\:lg > * + * {
+  margin-top: 4rem;
+}
+
+.layout\:column-1-4 {
+  display: grid;
+  grid-gap: 2rem;
+}
+
+@media (min-width: 640px) {
+  .layout\:column-1-4 {
+    grid-template: auto / 1fr 3fr;
+  }
+
+  .layout\:column-1-4 > *:first-child {
+    text-align: right;
+  }
+}
+
+/**
+ * Utilities
+ */
+
+.font-heading {
+  font-family: tokens.$font-family-heading;
+  font-style: italic;
+  font-weight: 700;
+  line-height: tokens.$leading-normal;
+}
+.font-weight\:regular {
+  font-weight: 400;
+}
+.font-weight\:semi-bold {
+  font-weight: 600;
+}
+.font-weight\:bold {
+  font-weight: 700;
+}
+.font-scale\:100 {
+  font-size: var(--font-scale-100);
+}
+.font-scale\:200 {
+  font-size: var(--font-scale-200);
+}
+.font-scale\:300 {
+  font-size: var(--font-scale-300);
+}
+.font-scale\:400 {
+  font-size: var(--font-scale-400);
+}
+.font-scale\:500 {
+  font-size: var(--font-scale-500);
+}
+.font-scale\:600 {
+  font-size: var(--font-scale-600);
+}
+.font-scale\:700 {
+  font-size: var(--font-scale-700);
+}
+.font-scale\:800 {
+  font-size: var(--font-scale-800);
+}
+.font-scale\:900 {
+  font-size: var(--font-scale-900);
+}

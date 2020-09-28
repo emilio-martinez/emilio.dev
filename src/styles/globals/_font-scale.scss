@@ -1,0 +1,79 @@
+@use 'sass:math';
+
+$_font-scale-fluid-min-base: 20;
+$_font-scale-fluid-min-scale: 1.125;
+$_font-scale-fluid-min-width: 375;
+
+$_font-scale-fluid-max-base: 22;
+$_font-scale-fluid-max-scale: 1.25;
+$_font-scale-fluid-max-width: 1140;
+
+$_font-scale-100-min: $_font-scale-fluid-min-base * math.pow($_font-scale-fluid-min-scale, 0);
+$_font-scale-100-max: $_font-scale-fluid-max-base * math.pow($_font-scale-fluid-max-scale, 0);
+$_font-scale-200-min: $_font-scale-fluid-min-base * math.pow($_font-scale-fluid-min-scale, 1);
+$_font-scale-200-max: $_font-scale-fluid-max-base * math.pow($_font-scale-fluid-max-scale, 1);
+$_font-scale-300-min: $_font-scale-fluid-min-base * math.pow($_font-scale-fluid-min-scale, 2);
+$_font-scale-300-max: $_font-scale-fluid-max-base * math.pow($_font-scale-fluid-max-scale, 2);
+$_font-scale-400-min: $_font-scale-fluid-min-base * math.pow($_font-scale-fluid-min-scale, 3);
+$_font-scale-400-max: $_font-scale-fluid-max-base * math.pow($_font-scale-fluid-max-scale, 3);
+$_font-scale-500-min: $_font-scale-fluid-min-base * math.pow($_font-scale-fluid-min-scale, 4);
+$_font-scale-500-max: $_font-scale-fluid-max-base * math.pow($_font-scale-fluid-max-scale, 4);
+$_font-scale-600-min: $_font-scale-fluid-min-base * math.pow($_font-scale-fluid-min-scale, 5);
+$_font-scale-600-max: $_font-scale-fluid-max-base * math.pow($_font-scale-fluid-max-scale, 5);
+$_font-scale-700-min: $_font-scale-fluid-min-base * math.pow($_font-scale-fluid-min-scale, 6);
+$_font-scale-700-max: $_font-scale-fluid-max-base * math.pow($_font-scale-fluid-max-scale, 6);
+$_font-scale-800-min: $_font-scale-fluid-min-base * math.pow($_font-scale-fluid-min-scale, 7);
+$_font-scale-800-max: $_font-scale-fluid-max-base * math.pow($_font-scale-fluid-max-scale, 7);
+$_font-scale-900-min: $_font-scale-fluid-min-base * math.pow($_font-scale-fluid-min-scale, 8);
+$_font-scale-900-max: $_font-scale-fluid-max-base * math.pow($_font-scale-fluid-max-scale, 8);
+
+@if (false) {
+  @debug 'font-scale-100-min: ' + $_font-scale-100-min;
+  @debug 'font-scale-100-max: ' + $_font-scale-100-max;
+  @debug 'font-scale-200-min: ' + $_font-scale-200-min;
+  @debug 'font-scale-200-max: ' + $_font-scale-200-max;
+  @debug 'font-scale-300-min: ' + $_font-scale-300-min;
+  @debug 'font-scale-300-max: ' + $_font-scale-300-max;
+  @debug 'font-scale-400-min: ' + $_font-scale-400-min;
+  @debug 'font-scale-400-max: ' + $_font-scale-400-max;
+  @debug 'font-scale-500-min: ' + $_font-scale-500-min;
+  @debug 'font-scale-500-max: ' + $_font-scale-500-max;
+  @debug 'font-scale-600-min: ' + $_font-scale-600-min;
+  @debug 'font-scale-600-max: ' + $_font-scale-600-max;
+  @debug 'font-scale-700-min: ' + $_font-scale-700-min;
+  @debug 'font-scale-700-max: ' + $_font-scale-700-max;
+  @debug 'font-scale-800-min: ' + $_font-scale-800-min;
+  @debug 'font-scale-800-max: ' + $_font-scale-800-max;
+  @debug 'font-scale-900-min: ' + $_font-scale-900-min;
+  @debug 'font-scale-900-max: ' + $_font-scale-900-max;
+}
+
+@function _font-scale-fn($min, $max) {
+  @return calc(((#{$min} / 16) * 1rem) + (#{$max} - #{$min}) * var(--font-scale-fluid-bp));
+}
+
+:root {
+  --font-scale-fuild-screen: 100vw;
+  --font-scale-fluid-bp: calc(
+    (var(--font-scale-fuild-screen) - #{$_font-scale-fluid-min-width} / 16 * 1rem) /
+      (#{$_font-scale-fluid-max-width} - #{$_font-scale-fluid-min-width})
+  );
+}
+
+@media (min-width: #{$_font-scale-fluid-max-width}px) {
+  :root {
+    --font-scale-fuild-screen: calc(#{$_font-scale-fluid-max-width} * 1px);
+  }
+}
+
+:root {
+  --font-scale-100: #{_font-scale-fn($_font-scale-100-min, $_font-scale-100-max)};
+  --font-scale-200: #{_font-scale-fn($_font-scale-200-min, $_font-scale-200-max)};
+  --font-scale-300: #{_font-scale-fn($_font-scale-300-min, $_font-scale-300-max)};
+  --font-scale-400: #{_font-scale-fn($_font-scale-400-min, $_font-scale-400-max)};
+  --font-scale-500: #{_font-scale-fn($_font-scale-500-min, $_font-scale-500-max)};
+  --font-scale-600: #{_font-scale-fn($_font-scale-600-min, $_font-scale-600-max)};
+  --font-scale-700: #{_font-scale-fn($_font-scale-700-min, $_font-scale-700-max)};
+  --font-scale-800: #{_font-scale-fn($_font-scale-800-min, $_font-scale-800-max)};
+  --font-scale-900: #{_font-scale-fn($_font-scale-900-min, $_font-scale-900-max)};
+}
