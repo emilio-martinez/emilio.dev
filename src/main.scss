@@ -96,12 +96,6 @@ h1 {
  * Utilities
  */
 
-.font-heading {
-  font-family: tokens.$font-family-heading;
-  font-style: italic;
-  font-weight: 700;
-  line-height: tokens.$leading-normal;
-}
 .font-weight\:regular {
   font-weight: 400;
 }
@@ -137,4 +131,13 @@ h1 {
 }
 .font-scale\:900 {
   font-size: var(--font-scale-900);
+}
+
+.heading\:font {
+  font-family: tokens.$font-family-heading;
+  font-style: italic;
+  font-weight: 700;
+}
+.heading\:lh {
+  line-height: tokens.$leading-normal;
 }
