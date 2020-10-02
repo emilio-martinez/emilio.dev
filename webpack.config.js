@@ -187,6 +187,7 @@ const getSassRule = (extract = true) => {
   };
 };
 
+/** @type {import('terser-webpack-plugin').TerserPluginOptions} */
 const TERSER_OPTIONS = {
   extractComments: false,
   parallel: true,
