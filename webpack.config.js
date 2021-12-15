@@ -5,7 +5,7 @@ const { resolve } = require('path');
 const { DefinePlugin } = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const ManifestPlugin = require('webpack-manifest-plugin');
+const { WebpackManifestPlugin } = require('webpack-manifest-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const FixStyleOnlyEntriesPlugin = require('webpack-fix-style-only-entries');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
@@ -38,7 +38,7 @@ module.exports = () => {
         new DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify('production'),
         }),
-        new ManifestPlugin({
+        new WebpackManifestPlugin({
           fileName: 'main-manifest.json',
         }),
         new MiniCssExtractPlugin({
@@ -86,7 +86,7 @@ module.exports = () => {
         new DefinePlugin({
           'process.env.NODE_ENV': JSON.stringify('production'),
         }),
-        new ManifestPlugin({
+        new WebpackManifestPlugin({
           fileName: 'admin-manifest.json',
         }),
         new MiniCssExtractPlugin({
